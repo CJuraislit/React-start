@@ -8,17 +8,16 @@ function App() {
   const [contentType, setContentType] = useState(null);
 
   function handleClick(type) {
-    // console.log("button clicked", type);
     setContentType(type);
   }
 
-  let tabContent = null;
+  // let tabContent = null;
 
-  if (contentType) {
-    tabContent = <p>{differences[contentType]}</p>;
-  } else {
-    tabContent = <p>Нажми на кнопку</p>;
-  }
+  // if (contentType) {
+  //   tabContent = <p>{differences[contentType]}</p>;
+  // } else {
+  //   tabContent = <p>Нажми на кнопку</p>;
+  // }
 
   return (
     <div>
@@ -62,16 +61,16 @@ function App() {
             Концентрация
           </Button>
 
-          {/* {contentType ? (
+          {contentType ? (
             <p>{differences[contentType]}</p>
           ) : (
             <p>Нажми на кнопку</p>
-          )} */}
+          )}
 
           {/* {!contentType && <p>Нажми на кнопку</p>}
           {contentType && <p>{differences[contentType]}</p>} */}
 
-          {tabContent}
+          {/* {tabContent} */}
         </section>
       </main>
     </div>
