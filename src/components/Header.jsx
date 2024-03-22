@@ -9,7 +9,6 @@ export default function Header() {
   return (
     <header>
       <img src={logo} alt="Vite" />
-      {/* <h3>React Course</h3> */}
 
       <span>Время сейчас: {now.toLocaleTimeString()}</span>
     </header>

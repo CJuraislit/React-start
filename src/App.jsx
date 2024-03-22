@@ -11,14 +11,6 @@ function App() {
     setContentType(type);
   }
 
-  // let tabContent = null;
-
-  // if (contentType) {
-  //   tabContent = <p>{differences[contentType]}</p>;
-  // } else {
-  //   tabContent = <p>Нажми на кнопку</p>;
-  // }
-
   return (
     <div>
       <Header />
@@ -30,13 +22,6 @@ function App() {
             {ways.map((way) => (
               <WayToTeach key={way.title} {...way} />
             ))}
-            {/* <WayToTeach
-              title={ways[0].title}
-              description={ways[0].description}
-            />
-            <WayToTeach {...ways[1]} /> 
-            <WayToTeach {...ways[2]} />
-            <WayToTeach {...ways[3]} /> */}
           </ul>
         </section>
         <section>
@@ -66,11 +51,6 @@ function App() {
           ) : (
             <p>Нажми на кнопку</p>
           )}
-
-          {/* {!contentType && <p>Нажми на кнопку</p>}
-          {contentType && <p>{differences[contentType]}</p>} */}
-
-          {/* {tabContent} */}
         </section>
       </main>
     </div>
