@@ -1,8 +1,8 @@
 import Header from "./components/Header";
-import WayToTeach from "./components/WayToTeach.jsx";
 import Button from "./components/Button/Button.jsx";
+import TeachingSection from "./components/TeachingSection.jsx";
 import { useState } from "react";
-import { ways, differences } from "./data.js";
+import { differences } from "./data.js";
 
 function App() {
   const [contentType, setContentType] = useState(null);
@@ -15,15 +15,7 @@ function App() {
     <div>
       <Header />
       <main>
-        <section>
-          <h3>Наш подход к обучению</h3>
-
-          <ul>
-            {ways.map((way) => (
-              <WayToTeach key={way.title} {...way} />
-            ))}
-          </ul>
-        </section>
+        <TeachingSection />
         <section>
           <h3>Чем мы отличаемся от других</h3>
 
