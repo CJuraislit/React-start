@@ -1,7 +1,5 @@
 import classes from "./Button.module.css";
 
-console.log(classes);
-
 export default function Button({ children, onClick, isActive }) {
   return (
     <button
