@@ -1,4 +1,4 @@
-import Header from "./components/Header";
+import Header from "./components/Header/Header.jsx";
 import TeachingSection from "./components/TeachingSection.jsx";
 import DifferencesSection from "./components/DifferencesSection.jsx";
 import IntroSection from "./components/IntroSection.jsx";
