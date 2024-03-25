@@ -23,6 +23,8 @@ export default function EffectSecton() {
           expedita enim doloribus id aperiam, voluptatem molestiae, sapiente
           sequi perferendis aliquid vitae. Mollitia!
         </p>
+
+        <Button onClick={() => setModal(false)}>Close Modal</Button>
       </Modal>
     </section>
   );
