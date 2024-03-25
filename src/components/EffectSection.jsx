@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Button from "./Button/Button";
 import Modal from "./Modal/Modal";
 
@@ -7,17 +7,17 @@ export default function EffectSecton() {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
 
-  async function fecthUsers() {
+  const fetchUsers = useCallback(async () => {
     setLoading(true);
-    const response = await fetch(" https://jsonplaceholder.typicode.com/users");
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
     const users = await response.json();
     setUsers(users);
     setLoading(false);
-  }
+  }, []);
 
   useEffect(() => {
-    fecthUsers();
-  }, []);
+    fetchUsers();
+  }, [fetchUsers]);
 
   return (
     <section>
