@@ -12,9 +12,20 @@ export default function FeedBackSection() {
     setHasError(event.target.value.trim().length === 0);
   }
 
+  function togleError() {
+    setHasError((prev = !prev));
+
+    // setHasError((prev = !prev)); // Вот так надо работать с предыдущим состоянием
+
+    // setHasError(!hasError); Так не надо работать с предыдущим состоянием
+    // setHasError(!hasError);
+  }
+
   return (
     <section>
       <h3>Обратная связь</h3>
+
+      <Button onClick={togleError}>Toggle Error</Button>
 
       <form>
         <label htmlFor="name">Ваше имя</label>
