@@ -1,31 +1,50 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Button from "./Button/Button";
 
-export default function FeedBackSection() {
-  const [name, setName] = useState("");
-  const [hasError, setHasError] = useState(false);
+function StateVsRef() {
+  const input = useRef();
+  // const [val, setVal] = useState();
+  const [show, setShow] = useState(false);
 
-  const [reason, setReason] = useState("help");
-
-  function handleNameChange(event) {
-    setName(event.target.value);
-    setHasError(event.target.value.trim().length === 0);
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      setShow(true);
+    }
   }
 
-  function togleError() {
-    setHasError((prev = !prev));
+  return (
+    <div>
+      <h3>Input value: {show && input.current.value}</h3>
+      <input
+        ref={input}
+        onKeyDown={handleKeyDown}
+        type="text"
+        className="control"
+        // value={val}
+        // onChange={(e) => setVal(e.target.value)}
+      />
+    </div>
+  );
+}
 
-    // setHasError((prev = !prev)); // Вот так надо работать с предыдущим состоянием
+export default function FeedBackSection() {
+  const [form, setForm] = useState({
+    name: "",
+    hasError: false,
+    reason: "help",
+  });
 
-    // setHasError(!hasError); Так не надо работать с предыдущим состоянием
-    // setHasError(!hasError);
+  function handleNameChange(event) {
+    setForm((prev) => ({
+      ...prev,
+      name: event.target.value,
+      hasError: event.target.value.trim().length === 0,
+    }));
   }
 
   return (
     <section>
       <h3>Обратная связь</h3>
-
-      <Button onClick={togleError}>Toggle Error</Button>
 
       <form>
         <label htmlFor="name">Ваше имя</label>
@@ -33,9 +52,9 @@ export default function FeedBackSection() {
           type="text"
           id="name"
           className="control"
-          value={name}
+          value={form.name}
           style={{
-            border: hasError ? "1px solid red" : null,
+            border: form.hasError ? "1px solid red" : null,
           }}
           onChange={handleNameChange}
         />
@@ -44,24 +63,31 @@ export default function FeedBackSection() {
         <select
           id="reason"
           className="control"
-          value={reason}
-          onChange={(event) => setReason(event.target.value)}
+          value={form.reason}
+          onChange={(event) =>
+            setForm((prev) => ({
+              ...prev,
+              reason: event.target.value,
+            }))
+          }
         >
           <option value="error">Ошибка</option>
           <option value="help">Нужна помощь</option>
           <option value="suggest">Предложение</option>
         </select>
 
-        <pre>
-          Name: {name}
+        {/* <pre>
+          Name: {form.name}
           <br />
-          Reason: {reason}
-        </pre>
+          Reason: {form.reason}
+        </pre> */}
 
-        <Button disabled={hasError} isActive={!hasError}>
+        <Button disabled={form.hasError} isActive={!form.hasError}>
           Отправить
         </Button>
       </form>
+      <br />
+      <StateVsRef />
     </section>
   );
 }
