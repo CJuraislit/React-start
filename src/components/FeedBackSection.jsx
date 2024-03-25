@@ -3,10 +3,13 @@ import Button from "./Button/Button";
 
 export default function FeedBackSection() {
   const [name, setName] = useState("");
+  const [hasError, setHasError] = useState(false);
+
   const [reason, setReason] = useState("help");
 
   function handleNameChange(event) {
     setName(event.target.value);
+    setHasError(event.target.value.trim().length === 0);
   }
 
   return (
@@ -20,6 +23,9 @@ export default function FeedBackSection() {
           id="name"
           className="control"
           value={name}
+          style={{
+            border: hasError ? "1px solid red" : null,
+          }}
           onChange={handleNameChange}
         />
 
@@ -41,7 +47,9 @@ export default function FeedBackSection() {
           Reason: {reason}
         </pre>
 
-        <Button>Отправить</Button>
+        <Button disabled={hasError} isActive={!hasError}>
+          Отправить
+        </Button>
       </form>
     </section>
   );
