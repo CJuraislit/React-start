@@ -1,8 +1,10 @@
 import { useEffect, useState, useCallback } from "react";
 import Button from "./Button/Button";
 import Modal from "./Modal/Modal";
+import useInput from "../hooks/useinput";
 
 export default function EffectSecton() {
+  const input = useInput();
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
@@ -42,11 +44,19 @@ export default function EffectSecton() {
       {loading && <p>Loading...</p>}
 
       {!loading && (
-        <ul>
-          {users.map((user) => (
-            <li key={user.id}>{user.name}</li>
-          ))}
-        </ul>
+        <>
+          <input type="text" className="control" {...input} />
+          <h6>{input.value}</h6>
+          <ul>
+            {users
+              .filter((user) =>
+                user.name.toLowerCase().includes(input.value.toLowerCase())
+              )
+              .map((user) => (
+                <li key={user.id}>{user.name}</li>
+              ))}
+          </ul>
+        </>
       )}
     </section>
   );
